@@ -1,0 +1,75 @@
+package com.vikash;
+
+import javax.xml.transform.Result;
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.lang.Math.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+public class Main {
+
+        public static String charRemoveAt(String str, int p) {
+                return str.substring(0, p) + str.substring(p + 1);
+        }
+
+        public static void main (String[] args) throws IOException {
+                Scanner sc = new Scanner(System.in);
+                String s = sc.nextLine();
+                String t = sc.nextLine();
+                int k = sc.nextInt();
+                sc.close();
+                int s1 = s.length();
+                int s2 = t.length();
+                int count  = Math.abs( s1 - s2);
+                int ss1 = s1;
+                int ss2 = s2;
+                for(int i = 0; i < count; i++ ){
+                        if(s1 > s2){
+                                s = charRemoveAt(s, s1-1);
+                                s1--;
+                        }
+                        else if(s2 > s1) {
+                                t = charRemoveAt(t, s2 - 1);
+                                s2--;
+                        }
+                }
+                for(int i = 0; i < s1; i++ ){
+                        if(s.charAt(i) != t.charAt(i)) {
+                                count += (s1 - i) * 2;
+                                break;
+                        }
+                }
+                System.out.println(count);
+                System.out.println(k);
+                if(count == k || (k - count) % 2 == 0) {
+                        if((k - count) < 0)
+                                System.out.println("No");
+                        else
+                        System.out.println("Yes");
+                }
+                else if(k > ss1){
+                        if(k >= ss1 + ss2)
+                                System.out.println("Yes");
+                        else
+                        System.out.println("No");
+                }
+
+                else System.out.println("No");
+
+        }
+
+
+}
+
+
+
+
